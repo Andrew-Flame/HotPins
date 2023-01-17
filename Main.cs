@@ -6,7 +6,7 @@ using UnityEngine;
 namespace HotPins {
     [BepInPlugin("Flame.HotPins", "HotPins", "1.0.0")]
     [BepInProcess("valheim.exe")]
-    public class ExtendedMinimap : BaseUnityPlugin {
+    public class Main : BaseUnityPlugin {
         private readonly Harmony harmony = new Harmony("Flame.HotPins");
         public static Minimap minimapInstance;
 
@@ -29,6 +29,8 @@ namespace HotPins {
                 /* Init add pin command */
                 Terminal.ConsoleEvent addPinEvent = AddPin.Run;  //Event that will occur after entering the command
                 Terminal.ConsoleCommand addPinCommand = new Terminal.ConsoleCommand("addpin", "create a pin", addPinEvent);
+
+                //Terminal.ConsoleEventArgs addPinCommandArgs = new Terminal.ConsoleEventArgs("position type name", __instance);
             }
         }
     }
