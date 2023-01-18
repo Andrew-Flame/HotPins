@@ -15,7 +15,7 @@ namespace HotPins {
                 Minimap.PinType pinType = (Minimap.PinType)Enum.Parse(typeof(Minimap.PinType), args.Args[1]);  //Get pin type
                 string name = args.Args[2];  //Get pin name
                 GameMinimap.GetInstance().AddPin(position, pinType, name, true, false);  //Add pin to the map
-                Debug.Log($"The pin \"{name}\" (type: {pinType}) was successfully marked on the map {{{position.x}:{position.z}}}");
+                Debug.Log($"The pin \"{name}\" (type: {pinType}) was successfully marked on the map {{{Math.Round(position.x)}:{Math.Round(position.z)}}}");
             } catch {  //Otherwise, we output an error message
                 args.Context.AddString("Error!\nTry to check if the arguments are entered in the correct format and try again");
             }
