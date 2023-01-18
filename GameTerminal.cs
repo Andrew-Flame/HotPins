@@ -2,7 +2,7 @@
 
 namespace HotPins {
     class GameTerminal {
-        /** Class for adding a command to the game terminal */
+        /** Adding a command to the game terminal */
         [HarmonyPatch(typeof(Terminal), "Awake")]
         class AddTerminalCommnd {
             private static void Postfix() {

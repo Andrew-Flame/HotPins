@@ -5,15 +5,16 @@ namespace HotPins {
     class AddPin {
         /** Method for adding a pin to the game map */
         public static void Run(Terminal.ConsoleEventArgs args) {
-            if (args.Length != 5) {  //If we don't have enough arguments
-                args.Context.AddString("Error!\nFour arguments are required:\npositionX positionY pinType pinName");
+            if (args.Length != 3) {  //If we don't have enough arguments
+                args.Context.AddString("Error!\nTwo arguments are required:\npinType pinName");
                 return;
             }
             
             try {  //Trying to add a pin code to the card
-                Vector3 position = new Vector3(Convert.ToSingle(args.Args[1]), Convert.ToSingle(args.Args[2]), 0f);  //Get position as Vector3
-                Minimap.PinType pinType = (Minimap.PinType)Enum.Parse(typeof(Minimap.PinType), args.Args[3]);  //Get pin type
-                string name = args.Args[4];  //Get pin name
+                Vector3 position = GameCharacter.GetPosition();  //Get the player's position as a pin position
+                Debug.Log($"{position.x} {position.y} {position.z}");
+                Minimap.PinType pinType = (Minimap.PinType)Enum.Parse(typeof(Minimap.PinType), args.Args[1]);  //Get pin type
+                string name = args.Args[2];  //Get pin name
                 GameMinimap.GetInstance().AddPin(position, pinType, name, true, false);  //Add pin to the map
                 Debug.Log($"The pin \"{name}\" was successfully marked on the map");
             } catch {  //Otherwise, we output an error message
