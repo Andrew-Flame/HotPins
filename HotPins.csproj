@@ -32,7 +32,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AddPin.cs" />
-    <Compile Include="Main.cs" />
+    <Compile Include="GameMinimap.cs" />
+    <Compile Include="GameTerminal.cs" />
+    <Compile Include="Master.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -45,7 +47,7 @@
     <Content Include="libs\UnityEngine.UI.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="0Harmony, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>libs\0Harmony.dll</HintPath>
     </Reference>
