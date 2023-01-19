@@ -1,8 +1,10 @@
 ﻿using HarmonyLib;
+using UnityEngine;
 
 namespace HotPins {
     class GameMinimap {
         private static Minimap instance;  //A minimap instance
+        public static Vector3 position;
 
         /** Getting an instance of a game minimap */
         [HarmonyPatch(typeof(Minimap), "Awake")]
@@ -12,6 +14,12 @@ namespace HotPins {
             }
         }
 
+        [HarmonyPatch(typeof(Minimap), "UpdatePlayerMarker")]
+        class FUCK {
+            private static void Postfix(object[] __args) {
+                position = ((Player)__args[0]).transform.position;
+            }
+        }
 
         /** Method for returning an instance of a game minimap
          * return an instance of a game minimap
