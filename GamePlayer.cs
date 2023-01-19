@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using UnityEngine;
 
 namespace HotPins {
     class GamePlayer {
@@ -14,7 +13,7 @@ namespace HotPins {
         }
 
         /** Getting the position of the game character */
-        public static Vector3 GetPosition() {
+        public static UnityEngine.Vector3 GetPosition() {
             return instance.transform.position;
         }
     }
