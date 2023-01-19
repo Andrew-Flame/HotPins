@@ -11,7 +11,7 @@ namespace HotPins {
             }
             
             try {  //Trying to add a pin code to the card
-                Vector3 position = GameMinimap.position;  //Get the player's position as a pin position
+                Vector3 position = GamePlayer.GetPosition();  //Get the player's position as a pin position
                 Minimap.PinType pinType = (Minimap.PinType)Enum.Parse(typeof(Minimap.PinType), args.Args[1]);  //Get pin type
                 string name = args.Args[2];  //Get pin name
                 GameMinimap.GetInstance().AddPin(position, pinType, name, true, false);  //Add pin to the map

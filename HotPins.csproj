@@ -33,7 +33,7 @@
   <ItemGroup>
     <Compile Include="AddPin.cs" />
     <Compile Include="GameMinimap.cs" />
-    <Compile Include="GameCharacter.cs" />
+    <Compile Include="GamePlayer.cs" />
     <Compile Include="GameTerminal.cs" />
     <Compile Include="Master.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
