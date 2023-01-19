@@ -6,8 +6,7 @@ namespace HotPins {
         [HarmonyPatch(typeof(Terminal), "Awake")]
         class AddTerminalCommnd {
             private static void Postfix() {
-                Terminal.ConsoleEvent addPinEvent = AddPin.Run;  //Event that will occur after entering the command
-                new Terminal.ConsoleCommand("addpin", "create a pin", addPinEvent);  //Declare our terminal command
+                new Terminal.ConsoleCommand("addpin", "create a pin", AddPin.Run);  //Init terminal command
             }
         }
     }
