@@ -16,7 +16,7 @@ namespace HotPins {
             harmony.PatchAll();  //Patching the harmony
 
             /* Reading config file */
-            StreamReader config = new StreamReader("BepInEx/config/Flame.HotPins.ini");
+            StreamReader config = new StreamReader("BepInEx/config/Flame.HotPins.cfg");
             foreach (string line in config.ReadToEnd().Split('\n')) {
                 if (Regex.IsMatch(line.Trim(), @"^\S+\s*=\s*""(Fireplace|House|Hammer|Ball|Cave)""\s*"".*""$")) {  //Check the string is a key-pin combination
                     string[] keyValueBandle = line.Trim().Split('=');  //Get key-value bundle
