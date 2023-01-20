@@ -2,7 +2,6 @@
 using HarmonyLib;
 using System.Collections.Generic;
 using System.IO;
-using System.Net.Configuration;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
