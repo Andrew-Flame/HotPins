@@ -34,6 +34,21 @@ namespace HotPins {
                 }
             }
             config.Close();  //Close the stream
+
+            /* Sorting binds (we need the first keyboard shortcuts in the dictionary with the largest number of keys involved) */
+            {
+                Dictionary<KeyCode[], Pin> tmpDictionary = new Dictionary<KeyCode[], Pin>();  //Temporary dictionary
+                byte bindSize = 1;  //Number of keys used by the bind
+                foreach (KeyValuePair<KeyCode[], Pin> bundle in keyBundles)  //Getting the maximum number
+                    if (bundle.Key.Length > bindSize) bindSize = (byte)bundle.Key.Length;
+
+                while (tmpDictionary.Count != keyBundles.Count) {  //Until both dictionaries have the same number of entries
+                    foreach (KeyValuePair<KeyCode[], Pin> bundle in keyBundles)  //Adding entries from the "longest" to the "shortest"
+                        if (bundle.Key.Length == bindSize) tmpDictionary.Add(bundle.Key, bundle.Value);
+                    bindSize--;
+                }
+                keyBundles = tmpDictionary;  //Overwriting the original dictionary
+            }
         }
 
         void Update() {
