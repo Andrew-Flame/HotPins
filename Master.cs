@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 
 namespace HotPins {
-    [BepInPlugin("Flame.HotPins", "HotPins", "1.0.0")]
+    [BepInPlugin("Flame.HotPins", "HotPins", "1.1.0")]
     public class Master : BaseUnityPlugin {
         private readonly Harmony harmony = new Harmony("Flame.HotPins");
         private Dictionary<KeyCode[], Pin> keyBundles = new Dictionary<KeyCode[], Pin>();  //A bundle of keys and pins that will be marked on the map using these keys
