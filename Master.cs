@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 
 namespace HotPins {
-    [BepInPlugin("Flame.HotPins", "HotPins", "1.1.0")]
+    [BepInPlugin("Flame.HotPins", "HotPins", "1.2.0")]
     public class Master : BaseUnityPlugin {
         private readonly Harmony harmony = new Harmony("Flame.HotPins");
         private const string configPath = "BepInEx/config/Flame.HotPins.cfg";  //Config file path
