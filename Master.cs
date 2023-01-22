@@ -2,6 +2,7 @@
 using HarmonyLib;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
@@ -9,15 +10,26 @@ namespace HotPins {
     [BepInPlugin("Flame.HotPins", "HotPins", "1.1.0")]
     public class Master : BaseUnityPlugin {
         private readonly Harmony harmony = new Harmony("Flame.HotPins");
+        private const string configPath = "BepInEx/config/Flame.HotPins.cfg";  //Config file path
         private Dictionary<KeyCode[], Pin> keyBundles = new Dictionary<KeyCode[], Pin>();  //A bundle of keys and pins that will be marked on the map using these keys
 
         void Awake() {
             harmony.PatchAll();  //Patching the harmony
 
+            /* If the configuration file is not found */
+            if (!File.Exists(configPath)) {
+                /* Read default config file from assembly */
+                using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("HotPins.templates.Flame.HotPins.cfg"))
+                using (StreamReader reader = new StreamReader(stream))
+                    using (StreamWriter writer = new StreamWriter(configPath))
+                        while (!reader.EndOfStream)
+                            writer.WriteLine(reader.ReadLine());  //And write default config into a new config file
+            }
+
             /* Reading config file */
-            StreamReader config = new StreamReader("BepInEx/config/Flame.HotPins.cfg");
+            StreamReader config = new StreamReader(configPath);
             foreach (string line in config.ReadToEnd().Split('\n')) {
-                if (Regex.IsMatch(line.Trim(), @"^\S+\s*=\s*""(Fireplace|House|Hammer|Ball|Cave)""\s*"".*""$")) {  //Check the string is a key-pin combination
+                if (Regex.IsMatch(line.Trim(), @"^\S+\s*=\s*""(Fireplace|House|Hammer|Ball|Cave)""\s*"".*""$")) {  //Check the string is a key-pin combination using regex
                     string[] keyValueBandle = line.Trim().Split('=');  //Get key-value bundle
 
                     /* Get keycodes shortcut */
