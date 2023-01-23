@@ -7,13 +7,22 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 
 namespace HotPins {
-    [BepInPlugin("Flame.HotPins", "HotPins", "1.3.0")]
+    [BepInPlugin(GUID, MODNAME, VERSION)]
     public class Master : BaseUnityPlugin {
-        private readonly Harmony harmony = new Harmony("Flame.HotPins");
-        private const string configPath = "BepInEx/config/Flame.HotPins.cfg";  //Config file path
-        private Dictionary<KeyCode[], Pin> keyBundles = new Dictionary<KeyCode[], Pin>();  //A bundle of keys and pins that will be marked on the map using these keys
+        /* Mod info */
+        public const string MODNAME = "HotPins";
+        public const string AUTHOR = "Flame";
+        public const string GUID = AUTHOR + "." + MODNAME;
+        public const string VERSION = "1.3.0";
+
+        /* Config file path */
+        private const string configPath = "BepInEx/config/Flame.HotPins.cfg";
+
+        /* A bundle of keys and pins that will be marked on the map using these keys */
+        private Dictionary<KeyCode[], Pin> keyBundles = new Dictionary<KeyCode[], Pin>();
 
         void Awake() {
+            Harmony harmony = new Harmony(GUID);
             harmony.PatchAll();  //Patching the harmony
 
             /* If the configuration file is not found */
