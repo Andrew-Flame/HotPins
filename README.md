@@ -1,7 +1,8 @@
-<div align=center style='text-align:center'>
-    <img src='img/LogoHammer.png' style='width:52px;height:52px;'/>
-    <img src='img/LogoText.svg'  style='height:60px;'/>
-    <img src='img/LogoHammer.png' style='width:52px;height:52px;'/>
-</div>
+<div align=center>
+    <img src='img/SocialCard.jpg' width=75%/><br>
+    <img src='https://img.shields.io/github/v/release/Andrew-Flame/HotPins?style=for-the-badge'/>
+    <img src='https://img.shields.io/github/repo-size/Andrew-Flame/HotPins?style=for-the-badge'/>
+    <img src='https://img.shields.io/github/license/Andrew-Flame/HotPins?color=%230CD94E&style=for-the-badge'/><br>
+</div
 
 ---
