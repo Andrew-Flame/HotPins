@@ -1,19 +1,9 @@
 <div align=center>
     <img src='img/SocialCard.jpg' width=75% href='google.com'/>
     <br>
-    <a href='https://valheim.thunderstore.io/package/Flame/HotPins'>
-        <img src='https://img.shields.io/endpoint?label=Thunderstore%20downloads&style=for-the-badge&url=https://valheim-modtracker.vercel.app/thunderstore/Flame/HotPins/downloads'/>
-        <img src='https://img.shields.io/endpoint?label=Thunderstore%20thumbsups&style=for-the-badge&url=https://valheim-modtracker.vercel.app/thunderstore/Flame/HotPins/ratings'/>
-    </a>
-    <br>
-    <a href='https://www.nexusmods.com/valheim/mods/2228'>
-        <img src='https://img.shields.io/endpoint?label=Nexusmods%20views&style=for-the-badge&url=https://valheim-modtracker.vercel.app/nexusmods/2228/views'/>
-        <img src='https://img.shields.io/endpoint?label=Nexusmods%20endorsed&style=for-the-badge&url=https://valheim-modtracker.vercel.app/nexusmods/2228/endorsed'/>
-    </a>
-    <br>
-    <a href='https://github.com/Andrew-Flame/HotPins/releases/latest'><img src='https://img.shields.io/github/v/release/Andrew-Flame/HotPins?style=for-the-badge&color=0cd94e'/></a>
-    <img src='https://img.shields.io/github/repo-size/Andrew-Flame/HotPins?style=for-the-badge&color=0cd94e'/>
-    <a href='https://github.com/Andrew-Flame/HotPins/blob/master/LICENSE'><img src='https://img.shields.io/github/license/Andrew-Flame/HotPins?style=for-the-badge&color=0cd94e'/></a>
+    <a href='https://github.com/Andrew-Flame/HotPins/releases/latest'><img src='https://img.shields.io/github/v/release/Andrew-Flame/HotPins?style=for-the-badge'/></a>
+    <img src='https://img.shields.io/github/repo-size/Andrew-Flame/HotPins?style=for-the-badge'/>
+    <a href='https://github.com/Andrew-Flame/HotPins/blob/master/LICENSE'><img src='https://img.shields.io/github/license/Andrew-Flame/HotPins?style=for-the-badge&color=007ec6'/></a>
 </div>
 
 ---
@@ -26,17 +16,19 @@ Especially for such cases, I have developed this modification.
 Now you can create pins on the game map completely safely in the blink of an eye.
 All you need after installing my mod is to use standard keys and keyboard shortcuts (or customize your own) to create pins.
 
-### Downloading
-<!--
-<a href='https://www.nexusmods.com/valheim/mods/2228'>
-    <img src='https://user-images.githubusercontent.com/82677442/214826952-b9ad0959-501b-43b0-9ea5-1df607a5320d.svg' height=75px/>
-</a>
-<a href='https://github.com/Andrew-Flame/HotPins/releases/latest'>
-    <img src='https://user-images.githubusercontent.com/82677442/214825167-8f182e52-ddef-40cc-a55d-509e58494d05.jpg' height=75px/>
-</a>
--->
+### Download
+<div align=left>
+    <a href='https://valheim.thunderstore.io/package/Flame/HotPins'>
+        <img src='img/ThirdCompsLogos/Thunderstore.svg' width=33%/>
+    </a>
+    <a href='https://www.nexusmods.com/valheim/mods/2228'>
+        <img src='img/ThirdCompsLogos/Nexusmods.svg' width=33%/>
+    </a>
+    <a href='https://github.com/Andrew-Flame/HotPins/releases/latest'>
+        <img src='img/ThirdCompsLogos/GitHub.svg' width=33%/>
+    </a>
+</div>
 
-You can download this mod from:
 - [Thunderstore](https://valheim.thunderstore.io/package/Flame/HotPins)
 - [Nexusmods](https://www.nexusmods.com/valheim/mods/2228)
 - [GitHub Releases](https://github.com/Andrew-Flame/HotPins/releases/latest)
