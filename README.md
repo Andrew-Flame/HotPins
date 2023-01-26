@@ -56,7 +56,7 @@ Also this mod is available on [Nexusmods](https://www.nexusmods.com/valheim/mods
 ### Customization
 - After the first launch of the mod, a config file `Flame.HotPins.cfg` will be created in the `Valheim/BepInEx/config` folder.
 - Next, you need to press the bind, you need to make a record of the form: 
-- `UnityKeyCode = "Pin Type" "Pin Name"`
+- `UnityKeyCode = "Pin Type" "Pin Name"` or `UnityKeyCode1+UnityKeyCode2 = "Pin Type" "Pin Name"` (you can use keyboard shortcuts from multiple keys)
 - You can view all [UnityKeyCodes here](https://t.ly/dMe2)
 - Available pin types: Fireplace, House, Hammer, Ball, Cave
 - As the pin name you can use any string
