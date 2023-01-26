@@ -14,7 +14,6 @@
 ---
 ### Description
 'Hot Pins' is a mod for Valheim that adds ways to quickly add markers to the game map.
-
 Have you ever found ore deposits or dungeons while running away from enemies?
 What were you doing at that moment?
 Maybe you tried to set a pin on the map, risking death, asked your friend to mark this place or just did nothing.
@@ -48,3 +47,16 @@ Also this mod is available on [Nexusmods](https://www.nexusmods.com/valheim/mods
 - LeftAlt+Keypad4 = "Ball" "Silver"
 - LeftAlt+Keypad5 = "Ball" "Tar"
 - LeftAlt+Keypad6 = "Ball" "Marble"
+
+### Manual
+1. Unpack the downloaded archive
+2. Move the file `HotPins.dll` to the `Valheim/BepInEx/plugins` folder
+3. Run the game, it will generate automatically an configuration file into `Valheim/BepInEx/config`
+
+### Customization
+- After the first launch of the mod, a config file `Flame.HotPins.cfg` will be created in the `Valheim/BepInEx/config` folder.
+- Next, you need to press the bind, you need to make a record of the form: 
+- `UnityKeyCode = "Pin Type" "Pin Name"`
+- You can view all [UnityKeyCodes here](https://t.ly/dMe2)
+- Available pin types: Fireplace, House, Hammer, Ball, Cave
+- As the pin name you can use any string
