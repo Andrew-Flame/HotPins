@@ -32,6 +32,13 @@ All you need after installing my mod is to use standard keys and keyboard shortc
     </a>
 </div>
 
+### Build from source
+You can also build a project from source. To do this , you need to have installed .NET Framework 4.8 or later. Then you need to download the source code from the [latest release](https://github.com/Andrew-Flame/HotPins/releases/latest) and unpack it into any convenient folder. Next, open Powershell in this folder and enter this command:
+```
+dotnet build --configuration Release
+```
+After that, the `bin` folder should appear in the current directory. It should have a file called `HotPins.dll`. Then you need to follow the [manual](https://github.com/Andrew-Flame/HotPins#manual) to install the mod
+
 ### Default keyboard shortcuts
 - Keypad1 = "Hammer" "Burial Chambers"
 - Keypad2 = "Hammer" "Troll Cave"
