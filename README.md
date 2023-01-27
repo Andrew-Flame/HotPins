@@ -21,14 +21,14 @@ All you need after installing my mod is to use standard keys and keyboard shortc
 - [Nexusmods](https://www.nexusmods.com/valheim/mods/2228)
 - [GitHub Releases](https://github.com/Andrew-Flame/HotPins/releases/latest)
 <div align=center>
-    <a href='https://valheim.thunderstore.io/package/Flame/HotPins'>
-        <img src='img/ThirdCompsLogos/Thunderstore.svg' width=40%/>
-    </a>
     <a href='https://www.nexusmods.com/valheim/mods/2228'>
         <img src='img/ThirdCompsLogos/Nexusmods.svg' width=40%/>
     </a>
     <a href='https://github.com/Andrew-Flame/HotPins/releases/latest'>
         <img src='img/ThirdCompsLogos/GitHub.svg' width=40%/>
+    </a>
+    <a href='https://valheim.thunderstore.io/package/Flame/HotPins'>
+        <img src='img/ThirdCompsLogos/Thunderstore.svg' width=40%/>
     </a>
 </div>
 
