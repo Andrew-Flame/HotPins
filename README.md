@@ -17,21 +17,27 @@ Now you can create pins on the game map completely safely in the blink of an eye
 All you need after installing my mod is to use standard keys and keyboard shortcuts (or customize your own) to create pins.
 
 ### Download
-<div align=left>
-    <a href='https://valheim.thunderstore.io/package/Flame/HotPins'>
-        <img src='img/ThirdCompsLogos/Thunderstore.svg' width=33%/>
-    </a>
-    <a href='https://www.nexusmods.com/valheim/mods/2228'>
-        <img src='img/ThirdCompsLogos/Nexusmods.svg' width=33%/>
-    </a>
-    <a href='https://github.com/Andrew-Flame/HotPins/releases/latest'>
-        <img src='img/ThirdCompsLogos/GitHub.svg' width=33%/>
-    </a>
-</div>
-
 - [Thunderstore](https://valheim.thunderstore.io/package/Flame/HotPins)
 - [Nexusmods](https://www.nexusmods.com/valheim/mods/2228)
 - [GitHub Releases](https://github.com/Andrew-Flame/HotPins/releases/latest)
+<div align=center>
+    <a href='https://www.nexusmods.com/valheim/mods/2228'>
+        <img src='img/ThirdCompsLogos/Nexusmods.svg' width=40%/>
+    </a>
+    <a href='https://github.com/Andrew-Flame/HotPins/releases/latest'>
+        <img src='img/ThirdCompsLogos/GitHub.svg' width=40%/>
+    </a>
+    <a href='https://valheim.thunderstore.io/package/Flame/HotPins'>
+        <img src='img/ThirdCompsLogos/Thunderstore.svg' width=40%/>
+    </a>
+</div>
+
+### Build from source
+You can also build a project from source. To do this , you need to have installed .NET Framework 4.8 or later. Then you need to download the source code from the [latest release](https://github.com/Andrew-Flame/HotPins/releases/latest) and unpack it into any convenient folder. Next, open Powershell in this folder and enter this command:
+```
+dotnet build --configuration Release
+```
+After that, the `bin` folder should appear in the current directory. It should have a file called `HotPins.dll`. Then you need to follow the [manual](https://github.com/Andrew-Flame/HotPins#manual) to install the mod
 
 ### Default keyboard shortcuts
 - Keypad1 = "Hammer" "Burial Chambers"
