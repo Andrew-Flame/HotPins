@@ -13,7 +13,7 @@ namespace HotPins {
         public const string MODNAME = "HotPins";
         public const string AUTHOR = "Flame";
         public const string GUID = AUTHOR + "." + MODNAME;
-        public const string VERSION = "1.4.1";
+        public const string VERSION = "1.4.2";
 
         /* Config file path */
         private const string configPath = "BepInEx/config/Flame.HotPins.cfg";
