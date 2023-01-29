@@ -19,7 +19,7 @@ namespace HotPins {
                 return;
             }
             
-            try {  //Trying to add a pin code to the card
+            try {  //Trying to add a pin to the map
                 string pinTypeRaw = args.Args[1];  //Get the pin type as a raw string
                 string pinName = args.Args[2];  //Get the pin name
                 SetPin(pinTypeRaw, pinName);  //Set the pin
@@ -35,7 +35,7 @@ namespace HotPins {
             Vector3 position = GamePlayer.GetPosition();  //Get the player's position as a pin position
             Minimap.PinType pinType = (Minimap.PinType)pinTypeDictionary[pinTypeRaw];  //Get the pin type as a standard value
             GameMinimap.GetInstance().AddPin(position, pinType, pinName, true, false);  //Add pin to the map
-            Debug.Log($"The pin \"{pinName}\" (type: {pinTypeRaw}) was successfully marked on the map {{{Math.Round(position.x)}:{Math.Round(position.z)}}}");  //Output info
+            Debug.Log($"The pin \"{pinName}\" (type: {pinTypeRaw}) was successfully marked on the map {Math.Round(position.x)}:{Math.Round(position.z)}");  //Output info
         }
     }
 }
