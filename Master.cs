@@ -13,7 +13,7 @@ namespace HotPins {
         public const string MODNAME = "HotPins";
         public const string AUTHOR = "Flame";
         public const string GUID = AUTHOR + "." + MODNAME;
-        public const string VERSION = "1.4.2";
+        public const string VERSION = "1.4.3";
 
         /* A bundle of keys and pins that will be marked on the map using these keys */
         private Dictionary<KeyCode[], Pin> keyBundles = new Dictionary<KeyCode[], Pin>();
