@@ -27,6 +27,8 @@ namespace HotPins {
 
             /* If the configuration file is not found */
             if (!File.Exists(configPath)) {
+                if (!Directory.Exists("BepInEx/config")) Directory.CreateDirectory("BepInEx/config");  //Create config directory if it doesn't exist
+
                 /* Read default config file from assembly */
                 using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("HotPins.templates.Flame.HotPins.cfg"))
                 using (StreamReader reader = new StreamReader(stream))
