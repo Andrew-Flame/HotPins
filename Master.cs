@@ -1,10 +1,10 @@
 ﻿using BepInEx;
-using HarmonyLib;
-using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
-using System.Text.RegularExpressions;
+using HarmonyLib;
 using UnityEngine;
+using System.Reflection;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace HotPins {
     [BepInPlugin(GUID, MODNAME, VERSION)]
@@ -15,9 +15,6 @@ namespace HotPins {
         public const string GUID = AUTHOR + "." + MODNAME;
         public const string VERSION = "1.4.2";
 
-        /* Config file path */
-        private const string configPath = "BepInEx/config/Flame.HotPins.cfg";
-
         /* A bundle of keys and pins that will be marked on the map using these keys */
         private Dictionary<KeyCode[], Pin> keyBundles = new Dictionary<KeyCode[], Pin>();
 
@@ -25,20 +22,24 @@ namespace HotPins {
             Harmony harmony = new Harmony(GUID);
             harmony.PatchAll();  //Patching the harmony
 
+            /* Get current configuration file and directory */
+            FileInfo configFile = new FileInfo(Config.ConfigFilePath);
+            DirectoryInfo configDirectory = configFile.Directory;
+
             /* If the configuration file is not found */
-            if (!File.Exists(configPath)) {
-                if (!Directory.Exists("BepInEx/config")) Directory.CreateDirectory("BepInEx/config");  //Create config directory if it doesn't exist
+            if (!configFile.Exists) {
+                if (!configDirectory.Exists) configDirectory.Create();  //Create config directory if it doesn't exist
 
                 /* Read default config file from assembly */
                 using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("HotPins.templates.Flame.HotPins.cfg"))
                 using (StreamReader reader = new StreamReader(stream))
-                    using (StreamWriter writer = new StreamWriter(configPath))
+                    using (StreamWriter writer = new StreamWriter(configFile.FullName))
                         while (!reader.EndOfStream)
                             writer.WriteLine(reader.ReadLine());  //And write default config into a new config file
             }
 
             /* Reading config file */
-            using (StreamReader config = new StreamReader(configPath)) {
+            using (StreamReader config = new StreamReader(configFile.FullName)) {
                 foreach (string line in config.ReadToEnd().Split('\n')) {
                     if (Regex.IsMatch(line.Trim(), @"^\S+\s*=\s*""(Fireplace|House|Hammer|Ball|Cave)""\s*"".*""$")) {  //Check the string is a key-pin combination using regex
                         string[] keyValueBandle = line.Trim().Split('=');  //Get key-value bundle
