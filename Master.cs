@@ -1,8 +1,10 @@
-﻿using BepInEx;
+﻿using System;
+using BepInEx;
 using System.IO;
 using HarmonyLib;
 using UnityEngine;
 using System.Reflection;
+using HotPins.GameClasses;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
@@ -17,6 +19,10 @@ namespace HotPins {
 
         /* A bundle of keys and pins that will be marked on the map using these keys */
         private Dictionary<KeyCode[], Pin> keyBundles = new Dictionary<KeyCode[], Pin>();
+
+        private static KeyCode autoPin = KeyCode.G;
+        private static string autoPinType = "Hammer";
+        private static int autoPinRadius = 15;
 
         void Awake() {
             Harmony harmony = new Harmony(GUID);
@@ -76,18 +82,48 @@ namespace HotPins {
         }
 
         void Update() {
-            foreach (KeyValuePair<KeyCode[], Pin> bundle in keyBundles) {  //Checking whether any of the custom keys are pressed
-                if (CheckKeys(bundle.Key)) {
-                    AddPin.Run(bundle.Value);  //If all the necessary keys are pressed, add the pin to the map
-                    return;  //You cannot add multiple pins in one frame, so we exit the method
+            /* The first check for pressing the button to automatically create a pin */
+            if (Input.GetKeyDown(autoPin)) {
+                Vector3 playerPos = GamePlayer.GetPosition();  //Get player's position
+
+                foreach (Transform proxyLocation in GameLocationProxy.locationsProxy) {
+                    Vector3 proxyPos = proxyLocation.position;  //Get location's position
+                    Vector3 vectorDistance = new Vector3(proxyPos.x - playerPos.x, proxyPos.y - playerPos.y, proxyPos.z - playerPos.z);  //Get vector distance
+                    double linearDistance = Math.Sqrt(vectorDistance.x * vectorDistance.x + vectorDistance.y * vectorDistance.y 
+                        + vectorDistance.z * vectorDistance.z);  //Get linear distance to proxy location
+
+                    if (linearDistance < autoPinRadius) {  //If the location is close
+                        string pinName = GetProxyLocationName(proxyLocation.name);  //Get location's name
+                        if (pinName != string.Empty) AddPin.Run(new Pin(autoPinType, pinName), proxyLocation.position);  //If it doesn't empty, create a pin
+                    }
                 }
+
+                /* Using this method, we get the name of the location to create the pin */
+                string GetProxyLocationName(string rawName) {
+                    if (rawName.StartsWith("Crypt")) return "Burial Chamber";
+                    if (rawName.StartsWith("TrollCave")) return "Troll Cave";
+                    if (rawName.StartsWith("SunkenCrypt")) return "Sunken Crypt";
+                    if (rawName.StartsWith("MountainCave")) return "Frost Cave";
+                    if (rawName.StartsWith("GoblinCamp")) return "Fuling Village"; 
+                    if (rawName.StartsWith("Mistlands_DvergrTownEntrance")) return "Infested mine";
+                    return string.Empty;
+                }
+                return;  //Leaving the method
             }
 
-            /* Using this method, we check whether all the necessary keys are pressed */
-            bool CheckKeys(KeyCode[] keyCodes) {
-                if (!Input.GetKeyDown(keyCodes[keyCodes.Length - 1])) return false;  //Check the last pressed key (if it is not pressed, then the code should not be executed)
-                for (byte i = 0; i < keyCodes.Length - 1; i++) if (!Input.GetKey(keyCodes[i])) return false;  //If at least one key is not pressed, exit the method
-                return true;  //If the code execution has reached here, all the necessary keys are pressed
+            /* Second check for custom binds */
+            foreach (KeyValuePair<KeyCode[], Pin> bundle in keyBundles) {  //Checking whether any of the custom keys are pressed
+                if (CheckKeys(bundle.Key)) {  //If all the necessary keys are pressed
+                    AddPin.Run(bundle.Value);  //Add the pin to the map
+                    return;  //You cannot add multiple pins in one frame, so we exit the method
+                }
+
+                /* Using this method, we check whether all the necessary keys are pressed */
+                bool CheckKeys(KeyCode[] keyCodes) {
+                    if (!Input.GetKeyDown(keyCodes[keyCodes.Length - 1])) return false;  //Check the last pressed key (if it is not pressed, then the code should not be executed)
+                    for (byte i = 0; i < keyCodes.Length - 1; i++) if (!Input.GetKey(keyCodes[i])) return false;  //If at least one key is not pressed, exit the method
+                    return true;  //If the code execution has reached here, all the necessary keys are pressed
+                }
             }
         }
     }

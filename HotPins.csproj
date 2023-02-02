@@ -30,10 +30,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- Files to compile -->
+    <Compile Include="GameClasses\GameLocationProxy.cs" />
     <Compile Include="Pins\AddPin.cs" />
     <Compile Include="GameClasses\GameMinimap.cs" />
     <Compile Include="GameClasses\GamePlayer.cs" />
-    <Compile Include="GameClasses\GameTerminal.cs" />
     <Compile Include="Master.cs" />
     <Compile Include="Pins\Pin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
