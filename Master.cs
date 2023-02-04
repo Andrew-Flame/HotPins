@@ -16,7 +16,7 @@ namespace HotPins {
         public const string MODNAME = "HotPins";
         public const string AUTHOR = "Flame";
         public const string GUID = AUTHOR + "." + MODNAME;
-        public const string VERSION = "1.4.3";
+        public const string VERSION = "1.5.0";
         #endregion
 
         #region AutoPin values
