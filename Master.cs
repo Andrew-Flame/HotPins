@@ -5,6 +5,7 @@ using HarmonyLib;
 using UnityEngine;
 using System.Reflection;
 using HotPins.GameClasses;
+using BepInEx.Configuration;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
@@ -19,18 +20,11 @@ namespace HotPins {
         public const string VERSION = "1.4.3";
         #endregion
 
-        #region AutoPin defaul values
-        private static KeyCode autoPin = KeyCode.G;
-        private static string autoPinType = "Hammer";
-        private static int autoPinRadius = 15;
-        private static string[] autoPinsNames = {
-            "Burial Chamber",
-            "Troll Cave",
-            "Sunken Crypt",
-            "Frost Cave",
-            "Fuling Village",
-            "Infested Mine" 
-        };
+        #region AutoPin values
+        private static KeyCode autoPinKey { get; set; }
+        private static int autoPinRadius { get; set; }
+        private static string autoPinType { get; set; }
+        private static string[] autoPinsNames { get; set; } = new string[6];
         #endregion
 
         #region Other fields
@@ -101,12 +95,27 @@ namespace HotPins {
                 keyBundles = tmpDictionary;  //Overwriting the original dictionary
             }
             #endregion
+
+            #region Get AutoPin config values
+            /* Get config values */
+            autoPinKey = Config.Bind("AutoPins", "AutoPinKey", KeyCode.G).Value;
+            autoPinRadius = Config.Bind("AutoPins", "AutoPinRadius", 15).Value;
+            autoPinType = Config.Bind("AutoPins", "AutoPinType", "Hammer").Value;
+
+            /* Get dungeons' names from config */
+            autoPinsNames[0] = Config.Bind("AutoPins", "BurialChamber", "Burial Chamber").Value;
+            autoPinsNames[1] = Config.Bind("AutoPins", "TrollCave", "Troll Cave").Value;
+            autoPinsNames[2] = Config.Bind("AutoPins", "SunkenCrypt", "Sunken Crypt").Value;
+            autoPinsNames[3] = Config.Bind("AutoPins", "FrostCave", "Frost Cave").Value;
+            autoPinsNames[4] = Config.Bind("AutoPins", "FulingVillage", "Fuling Village").Value;
+            autoPinsNames[5] = Config.Bind("AutoPins", "InfestedMine", "Infested Mine").Value;
+            #endregion
         }
 
         void Update() {
             #region First check
             /* The first check for pressing the button to automatically create a pin */
-            if (Input.GetKeyDown(autoPin)) {
+            if (Input.GetKeyDown(autoPinKey)) {
                 Vector3 playerPos = GamePlayer.GetPosition();  //Get player's position
 
                 foreach (Transform proxyLocation in GameLocationProxy.locationsProxy) {
