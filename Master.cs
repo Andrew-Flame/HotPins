@@ -5,7 +5,6 @@ using HarmonyLib;
 using UnityEngine;
 using System.Reflection;
 using HotPins.GameClasses;
-using BepInEx.Configuration;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
@@ -21,10 +20,17 @@ namespace HotPins {
         #endregion
 
         #region AutoPin values
-        private static KeyCode autoPinKey { get; set; }
-        private static int autoPinRadius { get; set; }
-        private static string autoPinType { get; set; }
-        private static string[] autoPinsNames { get; set; } = new string[6];
+        private static KeyCode autoPinKey = KeyCode.G;
+        private static int autoPinRadius = 15;
+        private static string autoPinType = "Hammer";
+        private static string[] autoPinsNames { get; set; } = {
+            "Burial Chamber",
+            "Troll Cave",
+            "Sunken Crypt",
+            "Frost Cave",
+            "Fuling Village",
+            "Infested Mine"
+        };
         #endregion
 
         #region Other fields
@@ -38,7 +44,7 @@ namespace HotPins {
             harmony.PatchAll();  //Patching the harmony
             #endregion
 
-            #region Configuration Path
+            #region Get configuration file path
             /* Get current configuration file and directory */
             FileInfo configFile = new FileInfo(Config.ConfigFilePath);
             DirectoryInfo configDirectory = configFile.Directory;
@@ -58,24 +64,56 @@ namespace HotPins {
             }
             #endregion
 
-            #region Get keyboard keys and shortcuts
+            #region Get config values
             /* Reading config file */
             using (StreamReader config = new StreamReader(configFile.FullName)) {
+                string section = string.Empty;  //Section of the ini document
+
                 foreach (string line in config.ReadToEnd().Split('\n')) {
-                    if (Regex.IsMatch(line.Trim(), @"^\S+\s*=\s*""(Fireplace|House|Hammer|Ball|Cave)""\s*"".*""$")) {  //Check the string is a key-pin combination using regex
+                    if (line.Trim().StartsWith("#")) //If the line is a comment
+                        continue;  //Run the next loop iteration
+
+                    if (Regex.IsMatch(line.Trim(), @"^\[\w+\]$")) {  //If a new section is declared
+                        section = new Regex(@"[\[\]]").Replace(line.Trim(), "");  //Change the current section
+                        continue;  //Run the next loop iteration
+                    }
+
+                    if (section.Contains("Binds") && 
+                            Regex.IsMatch(line.Trim(), @"^\S+\s*=\s*""(Fireplace|House|Hammer|Ball|Cave)""\s*"".*""$")) {  //Check the string is a key-pin combination using regex
                         string[] keyValueBandle = line.Trim().Split('=');  //Get key-value bundle
 
                         /* Get keycodes shortcut */
                         string[] keyCodesAsStrings = keyValueBandle[0].Trim().Split('+');  //Get array of keycodes for keyboard shortcut as strings
                         KeyCode[] keyCodes = new KeyCode[keyCodesAsStrings.Length];  //Init an array for keaycodes
-                        for (byte i = 0; i < keyCodes.Length; i++) keyCodes[i] = (KeyCode)System.Enum.Parse(typeof(KeyCode), keyCodesAsStrings[i]);  //Set all keycodes
+                        for (byte i = 0; i < keyCodes.Length; i++) keyCodes[i] = (KeyCode)Enum.Parse(typeof(KeyCode), keyCodesAsStrings[i]);  //Set all keycodes
 
                         /* Get pin info */
                         string[] typeNameBundle = Regex.Replace(keyValueBandle[1].Trim(), @"""\s*""", "\"\"").Split(new char[] { '\"' },
-                            System.StringSplitOptions.RemoveEmptyEntries);  //Get pinType-pinName bundle
+                            StringSplitOptions.RemoveEmptyEntries);  //Get pinType-pinName bundle
                         Pin pin = new Pin(typeNameBundle[0].Trim(), typeNameBundle[1].Trim());  //Create a pin instance
 
                         keyBundles.Add(keyCodes, pin);  //Add a key-pin bundle to dictionary
+                        continue;  //Run the next loop iteration
+                    }
+
+                    if (section.Contains("AutoPin") && Regex.IsMatch(line.Trim(), @"^[a-zA-z]+\s*=\s*[a-zA-z0-9\s]+$")) {  //Check the string is a key-value combination using regex
+                        /* Get key and value */
+                        string[] keyValueBundle = line.Trim().Split('=');
+                        string key = keyValueBundle[0].Trim();
+                        string value = keyValueBundle[1].Trim();
+
+                        /* Assign values to the required fields */
+                        if (key.Contains("AutoPinKey")) autoPinKey = (KeyCode)Enum.Parse(typeof(KeyCode), value);
+                        else if (key.Contains("AutoPinRadius")) autoPinRadius = int.Parse(value);
+                        else if (key.Contains("AutoPinType")) autoPinType = value;
+                        else if (key.Contains("BurialChamber")) autoPinsNames[0] = value;
+                        else if (key.Contains("TrollCave")) autoPinsNames[1] = value;
+                        else if (key.Contains("SunkenCrypt")) autoPinsNames[2] = value;
+                        else if (key.Contains("FrostCave")) autoPinsNames[3] = value;
+                        else if (key.Contains("FulingVillage")) autoPinsNames[4] = value;
+                        else if (key.Contains("InfestedMine")) autoPinsNames[5] = value;
+
+                        continue;  //Run the next loop iteration
                     }
                 }
             }
@@ -94,21 +132,6 @@ namespace HotPins {
                 }
                 keyBundles = tmpDictionary;  //Overwriting the original dictionary
             }
-            #endregion
-
-            #region Get AutoPin config values
-            /* Get config values */
-            autoPinKey = Config.Bind("AutoPins", "AutoPinKey", KeyCode.G).Value;
-            autoPinRadius = Config.Bind("AutoPins", "AutoPinRadius", 15).Value;
-            autoPinType = Config.Bind("AutoPins", "AutoPinType", "Hammer").Value;
-
-            /* Get dungeons' names from config */
-            autoPinsNames[0] = Config.Bind("AutoPins", "BurialChamber", "Burial Chamber").Value;
-            autoPinsNames[1] = Config.Bind("AutoPins", "TrollCave", "Troll Cave").Value;
-            autoPinsNames[2] = Config.Bind("AutoPins", "SunkenCrypt", "Sunken Crypt").Value;
-            autoPinsNames[3] = Config.Bind("AutoPins", "FrostCave", "Frost Cave").Value;
-            autoPinsNames[4] = Config.Bind("AutoPins", "FulingVillage", "Fuling Village").Value;
-            autoPinsNames[5] = Config.Bind("AutoPins", "InfestedMine", "Infested Mine").Value;
             #endregion
         }
 
