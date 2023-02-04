@@ -11,27 +11,46 @@ using System.Text.RegularExpressions;
 namespace HotPins {
     [BepInPlugin(GUID, MODNAME, VERSION)]
     public class Master : BaseUnityPlugin {
+        #region General modification info
         /* Mod info */
         public const string MODNAME = "HotPins";
         public const string AUTHOR = "Flame";
         public const string GUID = AUTHOR + "." + MODNAME;
         public const string VERSION = "1.4.3";
+        #endregion
 
-        /* A bundle of keys and pins that will be marked on the map using these keys */
-        private Dictionary<KeyCode[], Pin> keyBundles = new Dictionary<KeyCode[], Pin>();
-
+        #region AutoPin defaul values
         private static KeyCode autoPin = KeyCode.G;
         private static string autoPinType = "Hammer";
         private static int autoPinRadius = 15;
+        private static string[] autoPinsNames = {
+            "Burial Chamber",
+            "Troll Cave",
+            "Sunken Crypt",
+            "Frost Cave",
+            "Fuling Village",
+            "Infested Mine" 
+        };
+        #endregion
+
+        #region Other fields
+        /* A bundle of keys and pins that will be marked on the map using these keys */
+        private Dictionary<KeyCode[], Pin> keyBundles = new Dictionary<KeyCode[], Pin>();
+        #endregion
 
         void Awake() {
+            #region Harmony patch
             Harmony harmony = new Harmony(GUID);
             harmony.PatchAll();  //Patching the harmony
+            #endregion
 
+            #region Configuration Path
             /* Get current configuration file and directory */
             FileInfo configFile = new FileInfo(Config.ConfigFilePath);
             DirectoryInfo configDirectory = configFile.Directory;
+            #endregion
 
+            #region Create the configuration file
             /* If the configuration file is not found */
             if (!configFile.Exists) {
                 if (!configDirectory.Exists) configDirectory.Create();  //Create config directory if it doesn't exist
@@ -43,7 +62,9 @@ namespace HotPins {
                         while (!reader.EndOfStream)
                             writer.WriteLine(reader.ReadLine());  //And write default config into a new config file
             }
+            #endregion
 
+            #region Get keyboard keys and shortcuts
             /* Reading config file */
             using (StreamReader config = new StreamReader(configFile.FullName)) {
                 foreach (string line in config.ReadToEnd().Split('\n')) {
@@ -79,9 +100,11 @@ namespace HotPins {
                 }
                 keyBundles = tmpDictionary;  //Overwriting the original dictionary
             }
+            #endregion
         }
 
         void Update() {
+            #region First check
             /* The first check for pressing the button to automatically create a pin */
             if (Input.GetKeyDown(autoPin)) {
                 Vector3 playerPos = GamePlayer.GetPosition();  //Get player's position
@@ -100,17 +123,19 @@ namespace HotPins {
 
                 /* Using this method, we get the name of the location to create the pin */
                 string GetProxyLocationName(string rawName) {
-                    if (rawName.StartsWith("Crypt")) return "Burial Chamber";
-                    if (rawName.StartsWith("TrollCave")) return "Troll Cave";
-                    if (rawName.StartsWith("SunkenCrypt")) return "Sunken Crypt";
-                    if (rawName.StartsWith("MountainCave")) return "Frost Cave";
-                    if (rawName.StartsWith("GoblinCamp")) return "Fuling Village"; 
-                    if (rawName.StartsWith("Mistlands_DvergrTownEntrance")) return "Infested mine";
+                    if (rawName.StartsWith("Crypt")) return autoPinsNames[0];
+                    if (rawName.StartsWith("TrollCave")) return autoPinsNames[1];
+                    if (rawName.StartsWith("SunkenCrypt")) return autoPinsNames[2];
+                    if (rawName.StartsWith("MountainCave")) return autoPinsNames[3];
+                    if (rawName.StartsWith("GoblinCamp")) return autoPinsNames[4]; 
+                    if (rawName.StartsWith("Mistlands_DvergrTownEntrance")) return autoPinsNames[5];
                     return string.Empty;
                 }
                 return;  //Leaving the method
             }
+            #endregion
 
+            #region Second check
             /* Second check for custom binds */
             foreach (KeyValuePair<KeyCode[], Pin> bundle in keyBundles) {  //Checking whether any of the custom keys are pressed
                 if (CheckKeys(bundle.Key)) {  //If all the necessary keys are pressed
@@ -125,6 +150,7 @@ namespace HotPins {
                     return true;  //If the code execution has reached here, all the necessary keys are pressed
                 }
             }
+            #endregion
         }
     }
 }
