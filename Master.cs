@@ -35,7 +35,7 @@ namespace HotPins {
 
         #region Other fields
         /* A bundle of keys and pins that will be marked on the map using these keys */
-        private Dictionary<KeyCode[], Pin> keyBundles = new Dictionary<KeyCode[], Pin>();
+        private Dictionary<KeyCode[], Pin.Object> keyBundles = new Dictionary<KeyCode[], Pin.Object>();
         #endregion
 
         void Awake() {
@@ -90,7 +90,7 @@ namespace HotPins {
                         /* Get pin info */
                         string[] typeNameBundle = Regex.Replace(keyValueBandle[1].Trim(), @"""\s*""", "\"\"").Split(new char[] { '\"' },
                             StringSplitOptions.RemoveEmptyEntries);  //Get pinType-pinName bundle
-                        Pin pin = new Pin(typeNameBundle[0].Trim(), typeNameBundle[1].Trim());  //Create a pin instance
+                        Pin.Object pin = new Pin.Object(typeNameBundle[0].Trim(), typeNameBundle[1].Trim());  //Create a pin instance
 
                         keyBundles.Add(keyCodes, pin);  //Add a key-pin bundle to dictionary
                         continue;  //Run the next loop iteration
@@ -120,13 +120,13 @@ namespace HotPins {
 
             /* Sorting binds (we need the first keyboard shortcuts in the dictionary with the largest number of keys involved) */
             {
-                Dictionary<KeyCode[], Pin> tmpDictionary = new Dictionary<KeyCode[], Pin>();  //Temporary dictionary
+                Dictionary<KeyCode[], Pin.Object> tmpDictionary = new Dictionary<KeyCode[], Pin.Object>();  //Temporary dictionary
                 byte bindSize = 1;  //Number of keys used by the bind
-                foreach (KeyValuePair<KeyCode[], Pin> bundle in keyBundles)  //Getting the maximum number
+                foreach (KeyValuePair<KeyCode[], Pin.Object> bundle in keyBundles)  //Getting the maximum number
                     if (bundle.Key.Length > bindSize) bindSize = (byte)bundle.Key.Length;
 
                 while (tmpDictionary.Count != keyBundles.Count) {  //Until both dictionaries have the same number of entries
-                    foreach (KeyValuePair<KeyCode[], Pin> bundle in keyBundles)  //Adding entries from the "longest" to the "shortest"
+                    foreach (KeyValuePair<KeyCode[], Pin.Object> bundle in keyBundles)  //Adding entries from the "longest" to the "shortest"
                         if (bundle.Key.Length == bindSize) tmpDictionary.Add(bundle.Key, bundle.Value);
                     bindSize--;
                 }
@@ -149,7 +149,7 @@ namespace HotPins {
 
                     if (linearDistance < autoPinRadius) {  //If the location is close
                         string pinName = GetProxyLocationName(proxyLocation.name);  //Get location's name
-                        if (pinName != string.Empty) AddPin.Run(new Pin(autoPinType, pinName), proxyLocation.position);  //If it doesn't empty, create a pin
+                        if (pinName != string.Empty) Pin.Add.Run(new Pin.Object(autoPinType, pinName), proxyLocation.position);  //If it doesn't empty, create a pin
                     }
                 }
 
@@ -169,9 +169,9 @@ namespace HotPins {
 
             #region Second check
             /* Second check for custom binds */
-            foreach (KeyValuePair<KeyCode[], Pin> bundle in keyBundles) {  //Checking whether any of the custom keys are pressed
+            foreach (KeyValuePair<KeyCode[], Pin.Object> bundle in keyBundles) {  //Checking whether any of the custom keys are pressed
                 if (CheckKeys(bundle.Key)) {  //If all the necessary keys are pressed
-                    AddPin.Run(bundle.Value);  //Add the pin to the map
+                    Pin.Add.Run(bundle.Value);  //Add the pin to the map
                     return;  //You cannot add multiple pins in one frame, so we exit the method
                 }
 

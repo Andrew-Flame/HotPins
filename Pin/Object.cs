@@ -1,10 +1,10 @@
-﻿namespace HotPins {
+﻿namespace HotPins.Pin {
     /** The class on the basis of which pin objects will be created */
-    class Pin {
+    class Object {
         private readonly string type;
         private readonly string name;
 
-        public Pin(string type, string name) {
+        public Object(string type, string name) {
             this.type = type;
             this.name = name;
         }

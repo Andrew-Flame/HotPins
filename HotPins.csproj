@@ -31,11 +31,11 @@
   <ItemGroup>
     <!-- Files to compile -->
     <Compile Include="GameClasses\GameLocationProxy.cs" />
-    <Compile Include="Pins\AddPin.cs" />
+    <Compile Include="Pin\Add.cs" />
     <Compile Include="GameClasses\GameMinimap.cs" />
     <Compile Include="GameClasses\GamePlayer.cs" />
     <Compile Include="Master.cs" />
-    <Compile Include="Pins\Pin.cs" />
+    <Compile Include="Pin\Object.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <!-- FContent Files -->
     <None Include="libs\0Harmony.dll" />
@@ -76,6 +76,9 @@
       <HintPath>libs\UnityEngine.InputLegacyModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libs\UnityEngine.InputLegacyModule.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
