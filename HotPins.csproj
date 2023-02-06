@@ -35,7 +35,7 @@
     <Compile Include="GameClasses\GameMinimap.cs" />
     <Compile Include="GameClasses\GamePlayer.cs" />
     <Compile Include="Master.cs" />
-    <Compile Include="Pin\Object.cs" />
+    <Compile Include="Pin\Pin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <!-- FContent Files -->
     <None Include="libs\0Harmony.dll" />
