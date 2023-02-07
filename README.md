@@ -16,6 +16,13 @@ Especially for such cases, I have developed this modification.
 Now you can create pins on the game map completely safely in the blink of an eye.
 All you need after installing my mod is to use standard keys and keyboard shortcuts (or customize your own) to create pins.
 
+### Demonstration
+You can watch the demo by clicking on the [link](https://youtu.be/ZiYrDqpC6Ns)
+
+<a href='https://youtu.be/ZiYrDqpC6Ns' target='_blank'>
+    <img src='http://img.youtube.com/vi/ZiYrDqpC6Ns/maxresdefault.jpg' width=50%/>
+</a>
+
 ### Download
 - [Thunderstore](https://valheim.thunderstore.io/package/Flame/HotPins)
 - [Nexusmods](https://www.nexusmods.com/valheim/mods/2228)
