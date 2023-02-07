@@ -22,7 +22,7 @@ You can create binds to create pins on the game map by linking certain pins to t
 You can watch the demo by clicking on the [link](https://youtu.be/ZiYrDqpC6Ns)
 
 <a href='https://youtu.be/ZiYrDqpC6Ns' target='_blank'>
-    <img src='http://img.youtube.com/vi/ZiYrDqpC6Ns/maxresdefault.jpg' width=50%/>
+    <img src='https://i.imgur.com/swDSKFJ.jpeg' width=80%/>
 </a>
 
 ### Download
