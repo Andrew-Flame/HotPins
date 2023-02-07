@@ -16,6 +16,8 @@ Especially for such cases, I have developed this modification.
 Now you can create pins on the game map completely safely in the blink of an eye.
 All you need after installing my mod is to use standard keys and keyboard shortcuts (or customize your own) to create pins.
 
+You can create binds to create pins on the game map by linking certain pins to the keys. You can also use the key to automatically mark dungeons (default - G). Then pins will be created for all the dungeons that are close to the player (the radius can be adjusted).
+
 ### Demonstration
 You can watch the demo by clicking on the [link](https://youtu.be/ZiYrDqpC6Ns)
 
