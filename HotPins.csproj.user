@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-        <StartAction>Program</StartAction>
-        <StartProgram>C:\Windows\System32\cmd.exe</StartProgram>
-        <StartArguments>/k start steam://rungameid/892970 &amp;&amp; exit</StartArguments>
-    </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Windows\System32\cmd.exe</StartProgram>
+    <StartArguments>/k start steam://rungameid/892970 &amp;&amp; exit</StartArguments>
+  </PropertyGroup>
 </Project>

@@ -1,20 +1,20 @@
-﻿namespace HotPins.Pin {
-    /** The class on the basis of which pin objects will be created */
-    class Pin {
-        private readonly string type;
-        private readonly string name;
+﻿namespace HotPins.Pin; 
 
-        public Pin(string type, string name) {
-            this.type = type;
-            this.name = name;
-        }
+/** The class on the basis of which pin objects will be created */
+class Pin {
+    private readonly string _type;
+    private readonly string _name;
 
-        public string getType() {
-            return this.type;
-        }
+    public Pin(string type, string name) {
+        this._type = type;
+        this._name = name;
+    }
 
-        public string getName() {
-            return this.name;
-        }
+    public string GetPinType() {
+        return this._type;
+    }
+
+    public string GetPinName() {
+        return this._name;
     }
 }

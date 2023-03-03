@@ -1,20 +1,20 @@
 ﻿using HarmonyLib;
 
-namespace HotPins {
-    class GamePlayer {
-        private static Player instance;  //An instance of the game player
+namespace HotPins.GameClasses;
 
-        /** Getting an instance of the game character's visual */
-        [HarmonyPatch(typeof(Player), "Awake")]
-        class GetCharacterVisualInstance {
-            private static void Postfix(ref Player __instance) {
-                instance = __instance; 
-            }
-        }
+internal static class GamePlayer {
+    private static Player _instance;  //An instance of the game player
 
-        /** Getting the position of the game character */
-        public static UnityEngine.Vector3 GetPosition() {
-            return instance.transform.position;
+    /** Getting an instance of the game character's visual */
+    [HarmonyPatch(typeof(Player), "Awake")]
+    private static class GetCharacterVisualInstance {
+        private static void Postfix(ref Player __instance) {
+            _instance = __instance; 
         }
+    }
+
+    /** Getting the position of the game character */
+    public static UnityEngine.Vector3 GetPosition() {
+        return _instance.transform.position;
     }
 }

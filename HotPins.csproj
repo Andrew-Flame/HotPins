@@ -14,6 +14,7 @@
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <!-- Properties for Debug and Release -->
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -31,6 +32,7 @@
   <ItemGroup>
     <!-- Files to compile -->
     <Compile Include="GameClasses\GameLocationProxy.cs" />
+    <Compile Include="ModInfo.cs" />
     <Compile Include="Pin\Add.cs" />
     <Compile Include="GameClasses\GameMinimap.cs" />
     <Compile Include="GameClasses\GamePlayer.cs" />
