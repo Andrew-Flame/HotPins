@@ -5,8 +5,8 @@
   <PropertyGroup>
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A54EAD47-A0E4-471F-91DC-904BF21E3F0E}</ProjectGuid>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <PlatformTarget>x86</PlatformTarget>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HotPins</RootNamespace>
@@ -24,13 +24,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>None</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\</OutputPath>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <!-- Files to compile -->
+    <Compile Include="AutoPin\Properties.cs" />
     <Compile Include="GameClasses\GameLocationProxy.cs" />
     <Compile Include="ModInfo.cs" />
     <Compile Include="Pin\Add.cs" />
