@@ -3,20 +3,20 @@ using BepInEx;
 using System.IO;
 using HarmonyLib;
 using UnityEngine;
+using System.Linq;
 using System.Reflection;
 using HotPins.GameClasses;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace HotPins; 
 
 [BepInPlugin(ModInfo.GUID, ModInfo.MODNAME, ModInfo.VERSION)]
 internal sealed class Master : BaseUnityPlugin {
-    /* A structure containing AutoPin properties */
+    /// <summary>A structure containing AutoPin properties</summary>
     private AutoPin.Properties _autoPin = new ("Burial Chamber", "Troll Cave", "Sunken Crypt", "Frost Cave", "Fuling Village", "Infested Mine");
     
-    /* A bundle of keys and pins that will be marked on the map using these keys */
+    /// <summary>A bundle of keys and pins that will be marked on the map using these keys</summary>
     private Dictionary<KeyCode[], Pin.Pin> _keyBundles = new();
 
     private void Awake() {
@@ -30,10 +30,8 @@ internal sealed class Master : BaseUnityPlugin {
     }
 
     private void Update() {
-        if (Input.GetKeyDown(_autoPin.Key))  //If AutoPin key is pressed
-            EvalAutoPin();  //Get all close proxy locations
-        else  //Else check for pressed custom binds
-            CheckForPressedBinds();
+        if (Input.GetKeyDown(_autoPin.Key)) EvalAutoPin();  //If AutoPin key is pressed, get all close proxy locations
+        else CheckForPressedBinds();  //Else check for pressed custom binds
     }
     
     #region Awake methods

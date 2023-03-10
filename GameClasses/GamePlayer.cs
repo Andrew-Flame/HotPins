@@ -3,9 +3,10 @@
 namespace HotPins.GameClasses;
 
 internal static class GamePlayer {
-    private static Player _instance;  //An instance of the game player
+    /// <summary>An instance of the game player</summary>
+    private static Player _instance;
 
-    /** Getting an instance of the game character's visual */
+    /// <summary>Get an instance of the game character's visual</summary>
     [HarmonyPatch(typeof(Player), "Awake")]
     private static class GetCharacterVisualInstance {
         private static void Postfix(ref Player __instance) {
@@ -13,7 +14,8 @@ internal static class GamePlayer {
         }
     }
 
-    /** Getting the position of the game character */
+    /// <summary>Get the position of the game character</summary>
+    /// <returns>The position of the game character</returns>
     public static UnityEngine.Vector3 GetPosition() {
         return _instance.transform.position;
     }
