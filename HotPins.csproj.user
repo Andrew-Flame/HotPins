@@ -2,7 +2,7 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartAction>Program</StartAction>
-    <StartProgram>C:\Windows\System32\cmd.exe</StartProgram>
-    <StartArguments>/k start steam://rungameid/892970 &amp;&amp; exit</StartArguments>
+    <StartProgram>C:\SteamLibrary\steamapps\common\Valheim\valheim.exe</StartProgram>
+    <StartArguments>-console</StartArguments>
   </PropertyGroup>
 </Project>

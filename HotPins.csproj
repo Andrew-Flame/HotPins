@@ -15,19 +15,18 @@
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <LangVersion>11.0</LangVersion>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <!-- Properties for Debug and Release -->
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>C:\SteamLibrary\steamapps\common\Valheim\BepInEx\plugins\HotPins\</OutputPath>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DebugType>None</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\</OutputPath>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <!-- Files to compile -->
