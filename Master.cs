@@ -30,7 +30,7 @@ internal sealed class Master : BaseUnityPlugin {
     }
 
     private void Update() {
-        if (Input.GetKeyDown(_autoPin.Key)) EvalAutoPin();  //If AutoPin key is pressed, get all close proxy locations
+        if (Input.GetKeyDown(_autoPin.Key) && _autoPin.Enabled) EvalAutoPin();  //If AutoPin key is pressed, get all close proxy locations
         else CheckForPressedBinds();  //Else check for pressed custom binds
     }
     
@@ -118,6 +118,7 @@ internal sealed class Master : BaseUnityPlugin {
         if (key.Contains("AutoPinKey")) _autoPin.Key = (KeyCode)Enum.Parse(typeof(KeyCode), value);
         else if (key.Contains("AutoPinRadius")) _autoPin.Radius = int.Parse(value);
         else if (key.Contains("AutoPinType")) _autoPin.Type = value;
+        else if (key.Contains("AutoPinEnabled")) _autoPin.Enabled = Convert.ToBoolean(value);
         else if (key.Contains("BurialChamber")) _autoPin.Names[0] = value;
         else if (key.Contains("TrollCave")) _autoPin.Names[1] = value;
         else if (key.Contains("SunkenCrypt")) _autoPin.Names[2] = value;
