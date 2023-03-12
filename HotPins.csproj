@@ -32,6 +32,7 @@
     <!-- Files to compile -->
     <Compile Include="AutoPin\Properties.cs" />
     <Compile Include="GameClasses\GameLocationProxy.cs" />
+    <Compile Include="GameClasses\GamePlayerProfile.cs" />
     <Compile Include="ModInfo.cs" />
     <Compile Include="Pin\Add.cs" />
     <Compile Include="GameClasses\GameMinimap.cs" />
